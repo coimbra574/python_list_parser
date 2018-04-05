@@ -7,8 +7,42 @@ void yyerror(char *);
 
 %}
 
-
 %%
+
+[0-9]+	{
+	return INT;
+	}
+
+(["][A-Z]+["])	{
+	return STRING;
+	}
+
+[A-Z]+ {
+	return IDENT;
+}
+
+[[]	{
+	return ABRECOLC;
+	}
+
+[]]	{
+	return FECHACOLC;
+	}
+
+[,]	{
+	return VIRG;
+	}
+[ ]	{
+	return SPACE;
+	}
+
+\n	{
+	return EOL;
+	}
+
+[\t]+ ;
+
+.	{yyerror("Token nao reconhecido\n");}
 
 
 
